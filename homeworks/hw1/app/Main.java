@@ -8,8 +8,15 @@ class Main {
         System.out.println("Converter app");
 
         double kgs = 5;
+        double pnds = 12;
         double pounds = convKgsToPounds(kgs);
-        System.out.printf("Result is %.2f pounds.%n", pounds);
+        double kilos = convPoundsToKgs(pnds);
+
+        System.out.printf("Result: %.0f kilos = %.2f pounds and %.0f pounds = %.2f kilos.%n", kgs, pounds, pnds, kilos);
+    }
+
+    private static double convPoundsToKgs(double pnds) {
+        return pnds / CONV_K;
     }
 
     private static double convKgsToPounds(double kgs) {
