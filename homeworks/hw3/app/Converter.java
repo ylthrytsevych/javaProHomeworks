@@ -8,4 +8,8 @@ public class Converter {
     public static double convertFahrenheitToCelsius(double temp) {
         return (temp - FAHRENHEIT_OFFSET) * CONV_FACTOR;
     }
+
+    public static double convertCelsiusToFahrenheit(double temp) {
+        return (temp / CONV_FACTOR) + FAHRENHEIT_OFFSET;
+    }
 }
