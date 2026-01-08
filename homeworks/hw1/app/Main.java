@@ -1,4 +1,4 @@
-package app;
+package hw1.app;
 
 class Main {
 
