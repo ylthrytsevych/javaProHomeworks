@@ -19,6 +19,9 @@ public class Library {
     public void addBook(Book book) {
         if (book != null)
             allBooks.add(book);
+        else {
+            throw new IllegalArgumentException("Book cannot be null");
+        }
     }
 
     public boolean removeBook(Book book) {

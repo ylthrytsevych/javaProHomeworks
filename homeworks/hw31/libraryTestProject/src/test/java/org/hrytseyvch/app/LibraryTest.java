@@ -11,8 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class LibraryTest {
 
     private Library lib;
+
     @BeforeEach
-    void init(){
+    void init() {
         lib = new Library();
     }
 
@@ -24,12 +25,32 @@ class LibraryTest {
         assertEquals(1, lib.getBookCount());
     }
 
-    @Test
-    void testAddBook_Null_ShouldNotAdd() {
-        lib.addBook(null);
+//    @Test
+//    void testAddBookNull() {
+//        lib.addBook(null);
+//        assertEquals(0, lib.getBookCount()); // Кількість має лишитись 0
+//        assertTrue(lib.getBooks().isEmpty());
+//    }
 
-        assertEquals(0, lib.getBookCount()); // Кількість має лишитись 0
-        assertTrue(lib.getBooks().isEmpty());
+    @Test
+    void testAddBookNullThrowException() {
+        try {
+            lib.addBook(null);
+        } catch (IllegalArgumentException e) {
+            assertEquals("Book cannot be null", e.getMessage());
+        }
+        assertEquals(0, lib.getBookCount());
+    }
+
+    @Test
+    void testCreateBookInvalidParameters() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Book("", "Author");
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Book("Title", null);
+        });
     }
 
     @Test
