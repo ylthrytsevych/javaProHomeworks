@@ -26,3 +26,5 @@ replay_pid*
 out/
 target/
 homeworks/hw23/*/.gitignore
+apache-tomcat/
+.smarttomcat/
