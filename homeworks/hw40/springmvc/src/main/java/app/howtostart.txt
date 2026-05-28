@@ -1,0 +1,9 @@
+Community IDEA:
+
+File -> Settings -> Plugins
+ Smart Tomcat
+  Run -> Edit Configurations.
+    add  Smart Tomcat
+Context path: "/"
+Deployment directory: -> src/main/webapp
+Use classpath of module: -> springmvc (назва цього проекту)

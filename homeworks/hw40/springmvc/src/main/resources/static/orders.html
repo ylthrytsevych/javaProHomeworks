@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Всі Замовлення</title>
+</head>
+<body>
+<h2>Список замовлень</h2>
+<table border="1">
+    <tr>
+        <th>ID Замовлення</th>
+        <th>Дата</th>
+        <th>Загальна вартість</th>
+        <th>Дії</th>
+    </tr>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.creationDate}"></td>
+        <td th:text="${order.totalCost}"></td>
+        <td>
+            <a th:href="@{/orders/{id}(id=${order.id})}">Переглянути деталі</a>
+        </td>
+    </tr>
+</table>
+
+<hr>
+
+<h2>Створити нове замовлення</h2>
+<form action="/orders" method="post">
+    <!-- Контейнер, куди JS буде додавати нові товари -->
+    <div id="product-inputs">
+        <div class="product-group" style="margin-bottom: 10px;">
+            <label>Назва товару:</label>
+            <input type="text" name="productNames" required>
+            <label>Вартість товару:</label>
+            <input type="number" step="0.01" name="productCosts" required>
+        </div>
+    </div>
+
+    <!-- Кнопка "+", обов'язково тип "button", щоб вона не відправляла форму передчасно -->
+    <button type="button" id="add-product-btn" style="margin-top: 5px; font-weight: bold; cursor: pointer;">
+        + Додати ще товар
+    </button>
+
+    <br><br>
+    <button type="submit">Створити замовлення</button>
+</form>
+
+<script>
+    document.getElementById('add-product-btn').addEventListener('click', function() {
+        const container = document.getElementById('product-inputs');
+
+        // новий блок для товару
+        const newGroup = document.createElement('div');
+        newGroup.className = 'product-group';
+        newGroup.style.marginBottom = '10px';
+        newGroup.style.marginTop = '10px';
+
+        // шаблон нового рядка з кнопкою видалення
+        newGroup.innerHTML = `
+            <label>Назва товару:</label>
+            <input type="text" name="productNames" required>
+            <label>Вартість товару:</label>
+            <input type="number" step="0.01" name="productCosts" required>
+            <button type="button" class="remove-btn" style="color: red; cursor: pointer; margin-left: 5px;">Видалити</button>
+        `;
+
+        container.appendChild(newGroup);
+
+        newGroup.querySelector('.remove-btn').addEventListener('click', function() {
+            newGroup.remove();
+        });
+    });
+</script>
+</body>
+</html>
