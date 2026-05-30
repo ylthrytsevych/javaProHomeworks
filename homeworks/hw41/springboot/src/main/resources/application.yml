@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: app
+  datasource:
+    url: jdbc:mysql://localhost:3306/sprboot_shop_db?createDatabaseIfNotExist=true
+    username: root
+    password: rootroot
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      # create-drop видалятиме таблиці при зупинці - щоразу чисті дані
+      # update - зберігатиме дані
+      ddl-auto: create-drop
+    # щоб уникнути N+1
+    open-in-view: false
+    show-sql: true # SQL запити в консолі
